@@ -119,56 +119,79 @@
 
 
 // Project 1 : Beginner---
-let btn = document.querySelector('#new-qoute');
-let quote = document.querySelector('.quote');
-let person = document.querySelector('.person');
+// let btn = document.querySelector('#new-qoute');
+// let quote = document.querySelector('.quote');
+// let person = document.querySelector('.person');
 
-const quotes = [
-    {
-        quote: `"The best way to find yourself is to lose yourself in the service of others."`,
-        person: `Mahatma Gandhi`
-    },
-    {
-        quote: `"If you want to live a happy life, tie it to a goal, not to people or things."`,
-        person: `Albert Einstein`
-    },
-    {
-        quote: `"Success is not final, failure is not fatal: It is the courage to continue that counts."`,
-        person: `Winston Churchill`
-    },
-    {
-        quote: `"Believe you can and you're halfway there."`,
-        person: `Theodore Roosevelt`
-    },
-    {
-        quote: `"Do not wait for leaders; do it alone, person to person."`,
-        person: `Mother Teresa`
-    },
-    {
-        quote: `"It does not matter how slowly you go as long as you do not stop."`,
-        person: `Confucius`
-    },
-    {
-        quote: `"Your time is limited, so don't waste it living someone else's life."`,
-        person: `Steve Jobs`
-    },
-    {
-        quote: `"Happiness is not something ready made. It comes from your own actions."`,
-        person: `Dalai Lama`
-    },
-    {
-        quote: `"The only limit to our realization of tomorrow is our doubts of today."`,
-        person: `Franklin D. Roosevelt`
-    },
-    {
-        quote: `"In the middle of every difficulty lies opportunity."`,
-        person: `Albert Einstein`
-    },
-];
+// const quotes = [
+//     {
+//         quote: `"The best way to find yourself is to lose yourself in the service of others."`,
+//         person: `Mahatma Gandhi`
+//     },
+//     {
+//         quote: `"If you want to live a happy life, tie it to a goal, not to people or things."`,
+//         person: `Albert Einstein`
+//     },
+//     {
+//         quote: `"Success is not final, failure is not fatal: It is the courage to continue that counts."`,
+//         person: `Winston Churchill`
+//     },
+//     {
+//         quote: `"Believe you can and you're halfway there."`,
+//         person: `Theodore Roosevelt`
+//     },
+//     {
+//         quote: `"Do not wait for leaders; do it alone, person to person."`,
+//         person: `Mother Teresa`
+//     },
+//     {
+//         quote: `"It does not matter how slowly you go as long as you do not stop."`,
+//         person: `Confucius`
+//     },
+//     {
+//         quote: `"Your time is limited, so don't waste it living someone else's life."`,
+//         person: `Steve Jobs`
+//     },
+//     {
+//         quote: `"Happiness is not something ready made. It comes from your own actions."`,
+//         person: `Dalai Lama`
+//     },
+//     {
+//         quote: `"The only limit to our realization of tomorrow is our doubts of today."`,
+//         person: `Franklin D. Roosevelt`
+//     },
+//     {
+//         quote: `"In the middle of every difficulty lies opportunity."`,
+//         person: `Albert Einstein`
+//     },
+// ];
 
-btn.addEventListener('click', function(){
-    let random = Math.floor(Math.random()* quotes.length);
+// btn.addEventListener('click', function(){
+//     let random = Math.floor(Math.random()* quotes.length);
 
-    quote.innerText = quotes[random].quote;
-    person.innerText = quotes[random].person;
-})
+//     quote.innerText = quotes[random].quote;
+//     person.innerText = quotes[random].person;
+// })
+
+
+// project 2: modal styling
+const openBtn=document.getElementById('open-btn');
+const modalcontainer=document.getElementById('modal-container');
+const closeBtn = document.getElementById('close-btn');
+
+openBtn.addEventListener("click",function(){
+modalcontainer.style.display="block";
+});
+
+closeBtn.addEventListener("click",function(){
+    modalcontainer.style.display="none";
+});
+
+window.addEventListener('click',function(e){
+
+if(e.target === modalcontainer)
+{
+    modalcontainer.style.display="none";
+}
+
+},400);
