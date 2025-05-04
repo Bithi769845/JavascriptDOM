@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3D Scrolling Buttons</title>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    .marquee-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      perspective: 1000px;
+      overflow: hidden;
+    }
+
+    .button-track {
+      display: flex;
+      width: max-content;
+      animation: scroll-left 20s linear infinite;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .button-track button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-right: 20px;
+      white-space: nowrap;
+      background: #ff4081;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      transform: rotateY(10deg);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .button-track button:hover {
+      transform: rotateY(0deg) scale(1.05);
+    }
+
+    @keyframes scroll-left {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    /* Duplicate for seamless loop */
+    .button-track::after {
+      content: attr(data-content);
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+
+<div class="marquee-wrapper">
+  <div class="button-track" id="scroll-track">
+    <button>Button 1 Lorem ipsum dolor sit</button>
+    <button>Button 2 Lorem ipsum dolor sit</button>
+    <button>Button 3 Lorem ipsum dolor sit</button>
+    <button>Button 4 Lorem ipsum dolor sit</button>
+    <button>Button 5 Lorem ipsum dolor sit</button>
+  </div>
+</div>
+
+<script>
+  // JavaScript to clone buttons for seamless loop
+  const track = document.getElementById('scroll-track');
+  track.innerHTML += track.innerHTML; // duplicate content
+</script>
+
+</body>
+</html>

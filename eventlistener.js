@@ -175,23 +175,222 @@
 
 
 // project 2: modal styling
-const openBtn=document.getElementById('open-btn');
-const modalcontainer=document.getElementById('modal-container');
-const closeBtn = document.getElementById('close-btn');
+// const openBtn=document.getElementById('open-btn');
+// const modalcontainer=document.getElementById('modal-container');
+// const closeBtn = document.getElementById('close-btn');
 
-openBtn.addEventListener("click",function(){
-modalcontainer.style.display="block";
+// openBtn.addEventListener("click",function(){
+// modalcontainer.style.display="block";
+// });
+
+// closeBtn.addEventListener("click",function(){
+//     modalcontainer.style.display="none";
+// });
+
+// window.addEventListener('click',function(e){
+
+// if(e.target === modalcontainer)
+// {
+//     modalcontainer.style.display="none";
+// }
+
+// },400);
+
+
+
+
+// Project 3: accordion
+
+// according with my simple idea not animation:
+
+// const questions = document.getElementsByClassName('question');
+// const answers = document.getElementsByClassName('answer');
+
+// for (let i = 0; i < questions.length; i++) {
+//     questions[i].addEventListener('click', function () {
+//         // Toggle the display of the corresponding answer
+//         if (answers[i].style.display === "block") {
+//             answers[i].style.display = "none";
+//             questions[i].classList.remove('active');
+//         } else {
+//             answers[i].style.display = "block";
+//             questions[i].classList.add('active');
+//         }
+//     });
+// }
+
+
+// accordion with animation , first element show,if one show another hide:
+
+// const accordion = document.getElementsByClassName('content-container');
+// // Set the first element as active by default
+// if (accordion.length > 0) {
+//     accordion[0].classList.add('active');
+// }
+
+// // Add event listeners to all the accordion items
+// for (let i = 0; i < accordion.length; i++) {
+//     accordion[i].addEventListener('click', function() {
+//       // First, remove 'active' class from all items except the clicked one
+//       for (let j = 0; j < accordion.length; j++) {
+//         if (accordion[j] !== this) {
+//             accordion[j].classList.remove('active');
+//         }
+//     }
+
+//         this.classList.toggle('active');
+//     });
+// }
+
+
+// project 4: stop watch
+
+// const startstoptBtn = document.querySelector('#startStopBtn');
+// const resetBtn = document.querySelector('#resetBtn');
+// const saveBtn = document.querySelector('#saveBtn');
+
+// //time values
+// let seconds = 0;
+// let minutes = 0;
+// let hours = 0;
+
+// //  leadings zero
+// let leadingseconds =0;
+// let leadingminutes =0;
+// let leadinghours =0;
+
+// //set interval & timerstatus
+// let timerInterval = null;
+// let timerstatus = "stopped";
+
+
+// // stop watch function
+// function stopWatch(){
+//     seconds++; 
+//     if(seconds/60 === 1){
+//         seconds =0;
+//         minutes++;
+//     }
+//     if(minutes/60 === 1){
+//         minutes=0;
+//         hours++;
+//     }
+
+//     if(seconds<10)
+//     {
+//         leadingseconds = "0" + seconds.toString();
+//     }
+//     else{
+//         leadingseconds=seconds;
+//     }
+
+//     if(hours<10)
+//         {
+//             leadinghours = "0" + hours.toString();
+//         }
+//         else{
+//             leadinghours=hours;
+//         }
+
+//         if(minutes<10)
+//             {
+//                 leadingminutes = "0" + minutes.toString();
+//             }
+//             else{
+//                 leadingminutes=minutes;
+//             }
+        
+
+//     let displayTimer = document.getElementById('timer').innerText = leadinghours + ":" + leadingminutes + ":" + leadingseconds; 
+// }
+
+// //window.setInterval(stopWatch,1000) 
+
+// startstoptBtn.addEventListener('click',function(){
+//     if(timerstatus === "stopped"){
+//         timerInterval = window.setInterval(stopWatch,1000);
+//         document.getElementById('startStopBtn').innerHTML=`<i class="fa-solid fa-pause" id="pause"></i>`;
+//         timerstatus = "started";
+//     }
+//     else{
+//         window.clearInterval(timerInterval);
+//         document.getElementById('startStopBtn').innerHTML=`<i class="fa-solid fa-play" id="play"></i>`;
+//         timerstatus = "stopped";
+//     }
+// });
+
+// resetBtn.addEventListener('click', function(){
+//     window.clearInterval(timerInterval);
+//     seconds=0;
+//     minutes=0;
+//     hours=0;
+//     document.getElementById('timer').innerHTML="00:00:00";
+//     document.getElementById('startStopBtn').innerHTML=`<i class="fa-solid fa-play" id="play"></i>`;
+    
+// });
+
+// project 5: to do list
+
+// const addBtn = document.querySelector('#addBtn');
+// const inputText = document.querySelector('#inputText');
+// const tableBody = document.querySelector('#tableBody');
+
+// addBtn.addEventListener('click', function () {
+//     const value = inputText.value.trim();
+
+//     if (value !== "") {
+//         const row = tableBody.insertRow();
+//         const cell = row.insertCell(0);
+//         cell.textContent = value;
+//         inputText.value = ""; 
+//     } else {
+//         alert("Please enter something!");
+//     }
+// });
+
+
+
+
+const addBtn = document.querySelector('#add-task');
+const inputText = document.querySelector('#input-task');
+const taskContainer = document.querySelector('#task-container');
+
+addBtn.addEventListener('click', function () {
+    const taskValue = inputText.value.trim();
+
+    let task = document.createElement('div');
+    task.classList.add('task');
+
+    let li = document.createElement('li');
+    li.innerText = taskValue;
+    task.appendChild(li);
+
+    let checkButton = document.createElement("button");
+    checkButton.innerHTML = `<i class="fa-solid fa-check"></i>`;
+    checkButton.classList.add('checkTask');
+    task.appendChild(checkButton);
+
+    let deleteButton = document.createElement("button");
+    deleteButton.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
+    deleteButton.classList.add('deleteTask');
+    task.appendChild(deleteButton);
+
+    if (taskValue === "") {
+        alert('Please enter a task');
+        return;
+    }
+    else{
+        taskContainer.appendChild(task);
+        inputText.value = ""; 
+    }
+
+    checkButton.addEventListener('click',function(){
+        checkButton.parentElement.style.textDecoration="line-through";
+    });
+
+    deleteButton.addEventListener('click',function(e){
+        let target=e.target;
+        target.parentElement.parentElement.remove();
+    })
+    
 });
-
-closeBtn.addEventListener("click",function(){
-    modalcontainer.style.display="none";
-});
-
-window.addEventListener('click',function(e){
-
-if(e.target === modalcontainer)
-{
-    modalcontainer.style.display="none";
-}
-
-},400);
